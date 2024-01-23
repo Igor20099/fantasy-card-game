@@ -1,0 +1,14 @@
+function init(self)
+self.enemy = nil
+end
+
+
+function on_message(self, message_id, message, sender) 
+	if message_id == hash('collision_response') and message.other_id ~= hash('/cursor')  then
+		self.enemy = message.other_id
+	end
+	if message_id == hash('player_droped') and self.enemy ~= nil then
+		go.delete(self.enemy)
+		self.enemy = nil
+	end
+end
