@@ -1,0 +1,50 @@
+-- Начальная позиция спавна карт
+local pos_x = 180
+local pos_y = 276
+local POS_Z = -0.2
+
+--Сдвиг позиции
+local OFFSET_X = 112
+local OFFSET_Y = 176
+
+
+function init(self)
+	self.cards_rows = {}
+	self.spawned_row_cards = {}
+	for i = 1,4 do
+		local spawned_row_cards = {}
+		for j = 1,3 do
+			local card = factory.create('#factory_card',vmath.vector3(pos_x,pos_y,POS_Z))
+			table.insert(spawned_row_cards, card)
+			pos_x = pos_x + OFFSET_X
+		end
+		table.insert(self.cards_rows, spawned_row_cards)
+		pos_y = pos_y + OFFSET_Y
+		pos_x = 180
+	end
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash('card_destroed') then
+		go.delete_all(self.cards_rows[1])
+		table.remove(self.cards_rows,1)
+		for i,row in ipairs(self.cards_rows) do
+			for k, card in ipairs(row) do
+				local pos = go.get_position(card)
+				pos.y = pos.y - OFFSET_Y
+				go.set_position(pos,card)
+			end
+		end
+		local spawned_row_cards = {}
+		pos_x = 180
+		pos_y = 804
+		for j = 1,3 do
+			local card = factory.create('#factory_card',vmath.vector3(pos_x,pos_y,POS_Z))
+			table.insert(spawned_row_cards, card)
+			pos_x = pos_x + OFFSET_X
+		end
+		table.insert(self.cards_rows, spawned_row_cards)
+		
+	end
+
+end

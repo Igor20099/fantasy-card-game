@@ -7,6 +7,7 @@ function on_message(self, message_id, message, sender)
 		go.set("#sprite", "tint.w", 1)
 	end
 elseif message_id == hash('player_coll') then
+	
 	go.delete()
 end
 end

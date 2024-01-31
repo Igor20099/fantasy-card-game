@@ -12,6 +12,7 @@ function on_message(self, message_id, message, sender)
 		end
 	end
 	if message_id == hash('player_droped') and self.enemy ~= nil then
+		msg.post('/cards/spawn_card#cards', 'card_destroed')
 		go.delete(self.enemy)
 		self.enemy = nil
 	end
