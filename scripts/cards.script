@@ -7,10 +7,8 @@ local POS_Z = -0.2
 local OFFSET_X = 112
 local OFFSET_Y = 176
 
-
-function init(self)
-	self.cards_rows = {}
-	self.spawned_row_cards = {}
+-- Инициализация карт
+local function init_cards(self)
 	for i = 1,4 do
 		local spawned_row_cards = {}
 		for j = 1,3 do
@@ -24,27 +22,56 @@ function init(self)
 	end
 end
 
+--Удаление первой строки карт
+local function remove_row(self)
+	go.delete_all(self.cards_rows[1])
+	table.remove(self.cards_rows,1)
+end
+
+--Сдвиг карт вниз
+local function move_cards_down(self)
+	for i,row in ipairs(self.cards_rows) do
+		for k, card in ipairs(row) do
+			local pos = go.get_position(card)
+			pos.y = pos.y - OFFSET_Y
+			go.animate(card, 'position.y', go.PLAYBACK_ONCE_FORWARD, pos.y, go.EASING_LINEAR, 0.4, 0)	
+		end
+	end
+end
+
+--Спавн строки на самом верху поля
+local function spawn_top_row(self)
+	local spawned_row_cards = {}
+	pos_x = 180
+	pos_y = 804
+	for j = 1,3 do
+		local card = factory.create('#factory_card',vmath.vector3(pos_x,pos_y,POS_Z))
+		table.insert(spawned_row_cards, card)
+		pos_x = pos_x + OFFSET_X
+	end
+	table.insert(self.cards_rows, spawned_row_cards)
+end
+
+
+function init(self)
+	self.cards_rows = {}
+	init_cards(self)
+	self.is_down = false
+end
+
 function on_message(self, message_id, message, sender)
 	if message_id == hash('card_destroed') then
-		go.delete_all(self.cards_rows[1])
-		table.remove(self.cards_rows,1)
-		for i,row in ipairs(self.cards_rows) do
-			for k, card in ipairs(row) do
-				local pos = go.get_position(card)
-				pos.y = pos.y - OFFSET_Y
-				go.set_position(pos,card)
-			end
-		end
-		local spawned_row_cards = {}
-		pos_x = 180
-		pos_y = 804
-		for j = 1,3 do
-			local card = factory.create('#factory_card',vmath.vector3(pos_x,pos_y,POS_Z))
-			table.insert(spawned_row_cards, card)
-			pos_x = pos_x + OFFSET_X
-		end
-		table.insert(self.cards_rows, spawned_row_cards)
-		
+		--remove_row(self)
+		--move_cards_down(self)
+		--spawn_top_row(self)
+		for i, card in ipairs(self.cards_rows[1]) do
+			local url = msg.url('main',card,'sprite')
+			print(url)
+			go.animate(url, 'tint.w', go.PLAYBACK_ONCE_FORWARD, 0, go.EASING_LINEAR, 0.8, 0)			
+		end	
+		--Исправить перемещение карт
+		timer.delay(1, false, function() remove_row(self) move_cards_down(self) end)
+		timer.delay(1.4, false, function() spawn_top_row(self) end)
 	end
 
 end

@@ -3,7 +3,7 @@ scale_along_z: 0
 embedded_instances {
   id: "spawn_card"
   data: "components {\n"
-  "  id: \"card\"\n"
+  "  id: \"cards\"\n"
   "  component: \"/scripts/cards.script\"\n"
   "  position {\n"
   "    x: 0.0\n"
