@@ -64,8 +64,10 @@ function on_message(self, message_id, message, sender)
 		for i, card in ipairs(self.cards_rows[1]) do
 			local url_sprite = msg.url('main',card,'sprite')
 			local url_label = msg.url('main',card,'label')
+			local url_label_name = msg.url('main',card,'name_label')
 			print(url)
 			go.animate(url_sprite, 'tint.w', go.PLAYBACK_ONCE_FORWARD, 0, go.EASING_LINEAR, 0.8, 0)
+			go.animate(url_label_name, 'color', go.PLAYBACK_ONCE_FORWARD, vmath.vector4(1,1,1,0), go.EASING_LINEAR, 0.8, 0)		
 			go.animate(url_label, 'color', go.PLAYBACK_ONCE_FORWARD, vmath.vector4(1,1,1,0), go.EASING_LINEAR, 0.8, 0)					
 		end	
 		--Исправить перемещение карт

@@ -2,7 +2,7 @@ function init(self)
 	self.enemy = nil
 	self.max_health = 20
 	self.health = self.max_health
-	label.set_text('#label', self.max_health)
+	label.set_text('#label', self.health..'/'..self.max_health)
 	self.enemy_damage = 0
 end
 
@@ -25,7 +25,7 @@ function on_message(self, message_id, message, sender)
 		if self.health <=0 then
 			go.delete()
 		end
-		label.set_text('#label', self.health)
+		label.set_text('#label', self.health..'/'..self.max_health)
 		self.enemy = nil
 	end
 end

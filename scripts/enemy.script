@@ -2,6 +2,8 @@ math.randomseed(os.time())
 function init(self)
 	self.damage = math.random(2,20)
 	label.set_text('#label', self.damage)
+	print(self.name)
+	-- label.set_text('#name_label', go.get('#name'))
 end
 
 function on_message(self, message_id, message, sender)
