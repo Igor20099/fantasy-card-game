@@ -18,14 +18,17 @@ function on_message(self, message_id, message, sender)
 		end
 	end
 	if message_id == hash('player_droped') and self.enemy ~= nil then
+		msg.post('#collisionobject1', 'disable')
 		print(sender)
-		msg.post('/cards/spawn_card#cards', 'card_destroed')
-		go.delete(self.enemy)
-		self.health = self.health - self.enemy_damage
-		if self.health <=0 then
-			go.delete()
-		end
-		label.set_text('#label', self.health..'/'..self.max_health)
-		self.enemy = nil
+		local pos = go.get_position()
+			msg.post('/cards/spawn_card#cards', 'card_destroed')
+			go.delete(self.enemy)
+			self.health = self.health - self.enemy_damage
+			if self.health <=0 then
+				go.delete()
+			end
+			label.set_text('#label', self.health..'/'..self.max_health)
+			self.enemy = nil
+			timer.delay(1.6, false, function() msg.post('#collisionobject1', 'enable') end)
 	end
 end
