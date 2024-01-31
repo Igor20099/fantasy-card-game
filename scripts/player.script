@@ -3,7 +3,7 @@ function init(self)
 	self.max_health = 20
 	self.health = self.max_health
 	label.set_text('#label', self.max_health)
-	
+	self.enemy_damage = 0
 end
 
 
@@ -11,14 +11,17 @@ function on_message(self, message_id, message, sender)
 	if message_id == hash('trigger_response') and message.other_id ~= hash('/cursor')  then
 		if message.enter then
 			self.enemy = message.other_id
+			local url = msg.url('main',self.enemy,'label')
+			self.enemy_damage = tonumber(label.get_text(url))
 		else 
 			self.enemy = nil
 		end
 	end
 	if message_id == hash('player_droped') and self.enemy ~= nil then
+		print(sender)
 		msg.post('/cards/spawn_card#cards', 'card_destroed')
 		go.delete(self.enemy)
-		self.health = self.health - 5
+		self.health = self.health - self.enemy_damage
 		if self.health <=0 then
 			go.delete()
 		end

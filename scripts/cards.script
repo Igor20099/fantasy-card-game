@@ -61,13 +61,12 @@ end
 
 function on_message(self, message_id, message, sender)
 	if message_id == hash('card_destroed') then
-		--remove_row(self)
-		--move_cards_down(self)
-		--spawn_top_row(self)
 		for i, card in ipairs(self.cards_rows[1]) do
-			local url = msg.url('main',card,'sprite')
+			local url_sprite = msg.url('main',card,'sprite')
+			local url_label = msg.url('main',card,'label')
 			print(url)
-			go.animate(url, 'tint.w', go.PLAYBACK_ONCE_FORWARD, 0, go.EASING_LINEAR, 0.8, 0)			
+			go.animate(url_sprite, 'tint.w', go.PLAYBACK_ONCE_FORWARD, 0, go.EASING_LINEAR, 0.8, 0)
+			go.animate(url_label, 'color', go.PLAYBACK_ONCE_FORWARD, vmath.vector4(1,1,1,0), go.EASING_LINEAR, 0.8, 0)					
 		end	
 		--Исправить перемещение карт
 		timer.delay(1, false, function() remove_row(self) move_cards_down(self) end)
