@@ -2,6 +2,10 @@ images {
   image: "/sprites/card_template.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
+images {
+  image: "/sprites/potion.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
 margin: 0
 extrude_borders: 3
 inner_padding: 0
