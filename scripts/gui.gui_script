@@ -1,0 +1,16 @@
+function init(self)
+	self.scale_x = 0.01
+	gui.set_scale(gui.get_node('xp_bar'), vmath.vector3(self.scale_x,0.1,0))
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash('add_xp') then
+		self.scale_x = self.scale_x + message.xp
+		if self.scale_x >= 2.8 then
+			msg.post('player#player', 'level_up')
+			self.scale_x = 0.01
+		end
+		gui.set_scale(gui.get_node('xp_bar'), vmath.vector3(self.scale_x,0.1,0))
+	end
+end
+
