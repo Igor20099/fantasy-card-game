@@ -41,7 +41,8 @@ function on_message(self, message_id, message, sender)
 				end
 			end
 			
-			if self.health <=0 then
+			if self.health <= 0 then
+				msg.post('/gui#gui', 'show_restart_btn')
 				go.delete()
 			end
 			label.set_text('#label', self.health..'/'..self.max_health)

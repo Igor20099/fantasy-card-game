@@ -1,0 +1,25 @@
+local function show(self, proxy) -- method to unload and load proxy
+	if self.current_proxy then
+		msg.post(self.current_proxy, "unload")
+		self.current_proxy = nil
+	end
+	msg.post(proxy, "async_load")
+end
+
+function init(self)
+	msg.post(".", "acquire_input_focus")
+	msg.post('#collectionproxy','load')
+	msg.post('#collectionproxy','enable')
+	self.current_proxy = nil
+end
+
+
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash('restart_game') then
+		show(self, self.current_proxy)
+	elseif message_id == hash("proxy_loaded") then
+		self.current_proxy = sender
+		msg.post(sender, "enable")
+	end
+end

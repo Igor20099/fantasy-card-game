@@ -1,5 +1,5 @@
 [bootstrap]
-main_collection = /main/main.collectionc
+main_collection = /main/scene_manager.collectionc
 
 [script]
 shared_state = 1
@@ -7,14 +7,22 @@ shared_state = 1
 [display]
 width = 600
 height = 800
+high_dpi = 0
 
 [android]
 input_method = HiddenInputField
 
 [project]
 title = CardGame
+dependencies#0 = https://github.com/Insality/druid/archive/master.zip
 
 [graphics]
 default_texture_min_filter = nearest
 default_texture_mag_filter = nearest
+
+[html5]
+scale_mode = downscale_fit
+show_fullscreen_button = 0
+show_made_with_defold = 0
+show_console_banner = 0
 
