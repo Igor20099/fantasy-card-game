@@ -9,7 +9,6 @@ end
 function init(self)
 	msg.post(".", "acquire_input_focus")
 	msg.post('#collectionproxy','load')
-	msg.post('#collectionproxy','enable')
 	self.current_proxy = nil
 end
 
