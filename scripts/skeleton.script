@@ -1,6 +1,6 @@
 math.randomseed(os.time())
 function init(self)
-	self.damage = math.random(3,7)
+	self.damage = math.random(5,7)
 	label.set_text('#label', self.damage)
 	print(self.name)
 	go.set('#label_type', 'color', vmath.vector4(0,0,0,0))
