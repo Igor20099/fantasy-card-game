@@ -1,0 +1,17 @@
+math.randomseed(os.time())
+function init(self)
+	self.damage = math.random(6,12)
+	label.set_text('#label', self.damage)
+	print(self.name)
+	go.set('#label_type', 'color', vmath.vector4(0,0,0,0))
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash('trigger_response') then
+		if message.enter then
+			go.set("#sprite", "tint.w", 0.5)
+		else
+			go.set("#sprite", "tint.w", 1)
+		end
+	end
+end

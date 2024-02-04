@@ -57,7 +57,6 @@ function on_input(self, action_id, action)
 			-- Reset the scale to 1.0 on Selected GameObject when released
 			local s1 = vmath.vector3(1.0, 1.0, 1.0)
 			go.set_scale(s1, self.collision_id)
-			print(self.start_pos)
 			go.set_position(self.start_pos, self.collision_id)
 			msg.post('player#player', 'player_droped')
 		end

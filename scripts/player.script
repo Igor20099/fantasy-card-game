@@ -30,7 +30,13 @@ function on_message(self, message_id, message, sender)
 		msg.post('/cards/spawn_card#cards', 'card_destroed')
 		
 			go.delete(self.enemy)
-			if self.card_type == 'enemy' then
+			if self.card_type == 'slime' then
+				self.health = self.health - self.enemy_damage
+				msg.post('/gui#gui', 'add_xp',{xp = 0.2})
+			elseif self.card_type == 'skeleton' then
+				self.health = self.health - self.enemy_damage
+				msg.post('/gui#gui', 'add_xp',{xp = 0.3})
+			elseif self.card_type == 'dark_knight' then
 				self.health = self.health - self.enemy_damage
 				msg.post('/gui#gui', 'add_xp',{xp = 0.4})
 			elseif self.card_type == 'potion' then
