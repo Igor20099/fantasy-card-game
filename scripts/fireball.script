@@ -1,0 +1,21 @@
+math.randomseed(os.time())
+function init(self)
+	self.damage = math.random(4,10)
+	label.set_text('#label', self.damage)
+	print(self.name)
+	go.set('#label_type', 'color', vmath.vector4(0,0,0,0))
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash('trigger_response') and message.other_id ~= hash('/cursor')  then
+		if message.enter then
+			self.enemy = message.other_id
+			local url = msg.url('main',self.enemy,'label')
+			local url_type = msg.url('main',self.enemy,'label_type')
+			self.enemy_damage = tonumber(label.get_text(url))
+			self.card_type = label.get_text(url_type)
+		else 
+			self.enemy = nil
+		end
+	end
+end

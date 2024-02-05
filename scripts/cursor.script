@@ -1,3 +1,7 @@
+local CARD_SUPPORT_1_POS = vmath.vector3(180,100,0)
+local PLAYER_POS = vmath.vector3(292,100,0)
+local CARD_SUPPORT_2_POS = vmath.vector3(404,100,0)
+
 
 function init(self)
 	--Даем управление курсору
@@ -22,7 +26,14 @@ function on_message(self, message_id, message, sender)
 
 	-- When a collision message is received -- set self.collision_id to the id of 
 	-- the top-most game object which is pointed to (aka, colliding with) the cursor object
-	if message_id == hash("collision_response") and message.other_id == hash('/player') then
+	if message_id == hash("collision_response") and message.other_id == hash('/player') or message_id == hash("collision_response") and message.other_id == hash('/fireball')  then
+		print(message.other_id)
+		if message.other_id == hash('/player') and  message.other_id ~= hash('/fireball') then
+			self.start_pos = vmath.vector3(PLAYER_POS)
+		elseif message.other_id ~= hash('/player') and  message.other_id == hash('/fireball') then
+			self.start_pos = vmath.vector3(CARD_SUPPORT_1_POS)
+		end
+		
 		if not self.collision_id or
 		go.get_position(self.collision_id).z < message.other_position.z then
 			self.collision_id = message.other_id
@@ -45,7 +56,10 @@ function on_input(self, action_id, action)
 			-- When the action reflects a press
 			msg.post("#collisionobject", "enable")
 			self.pressed = true
-			self.start_pos = vmath.vector3(292, 100, 0.5)
+			
+		   
+	
+			
 
 		elseif action.released then
 			-- When the action reflects a release

@@ -23,6 +23,7 @@ embedded_components {
   "restitution: 0.5\n"
   "group: \"enemy\"\n"
   "mask: \"player\"\n"
+  "mask: \"support\"\n"
   "embedded_collision_shape {\n"
   "  shapes {\n"
   "    shape_type: TYPE_BOX\n"
