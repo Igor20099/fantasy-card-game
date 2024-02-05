@@ -96,7 +96,7 @@ embedded_components {
   "text: \"5\\n"
   "\"\n"
   "  \"\"\n"
-  "font: \"/builtins/fonts/system_font.font\"\n"
+  "font: \"/fonts/pixel.font\"\n"
   "material: \"/builtins/fonts/label.material\"\n"
   ""
   position {
@@ -144,7 +144,7 @@ embedded_components {
   "blend_mode: BLEND_MODE_ALPHA\n"
   "line_break: false\n"
   "text: \"skeleton\"\n"
-  "font: \"/builtins/fonts/system_font.font\"\n"
+  "font: \"/fonts/pixel.font\"\n"
   "material: \"/builtins/fonts/label.material\"\n"
   ""
   position {
@@ -192,12 +192,12 @@ embedded_components {
   "blend_mode: BLEND_MODE_ALPHA\n"
   "line_break: false\n"
   "text: \"SKELETON\"\n"
-  "font: \"/builtins/fonts/system_font.font\"\n"
+  "font: \"/fonts/pixel.font\"\n"
   "material: \"/builtins/fonts/label.material\"\n"
   ""
   position {
     x: 0.0
-    y: -44.0
+    y: -64.0
     z: 0.0
   }
   rotation {
@@ -205,6 +205,11 @@ embedded_components {
     y: 0.0
     z: 0.0
     w: 1.0
+  }
+  scale {
+    x: 0.8
+    y: 0.8
+    z: 1.0
   }
 }
 embedded_components {

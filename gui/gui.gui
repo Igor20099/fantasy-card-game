@@ -3,6 +3,10 @@ fonts {
   name: "system_font"
   font: "/builtins/fonts/system_font.font"
 }
+fonts {
+  name: "pixel"
+  font: "/fonts/pixel.font"
+}
 textures {
   name: "gui"
   texture: "/atlases/gui.atlas"
@@ -260,8 +264,8 @@ nodes {
     w: 1.0
   }
   scale {
-    x: 1.0
-    y: 1.0
+    x: 0.8
+    y: 0.8
     z: 1.0
     w: 1.0
   }
@@ -281,7 +285,7 @@ nodes {
   blend_mode: BLEND_MODE_ALPHA
   text: "RESTART\n"
   ""
-  font: "system_font"
+  font: "pixel"
   id: "text"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
