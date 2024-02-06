@@ -1,6 +1,6 @@
 math.randomseed(os.time())
 function init(self)
-	self.damage = math.random(4,10)
+	self.damage = math.random(2,10)
 	label.set_text('#label', self.damage)
 	print(self.name)
 	go.set('#label_type', 'color', vmath.vector4(0,0,0,0))
@@ -20,13 +20,20 @@ function on_message(self, message_id, message, sender)
 			self.enemy = nil
 		end
 	end
-	if message_id == hash('fireball_droped') and self.enemy ~= nil then
+	if message_id == hash('vampirism_droped') and self.enemy ~= nil then
 		msg.post('#collisionobject1', 'disable')
 		print(self.enemy)
+		local temp_enemy_damage = self.enemy_damage
 		local pos = go.get_position()
 		self.enemy_damage = self.enemy_damage - self.damage
 		print(self.enemy_damage)
 		msg.post(self.enemy, 'take_damage', {damage = self.enemy_damage})
+		if self.damage > temp_enemy_damage then
+			msg.post('player#player', 'add_health', {health = temp_enemy_damage})
+		else
+			msg.post('player#player', 'add_health', {health = self.damage})
+		end
+		
 		go.delete(go.get_id())
 	end
 end

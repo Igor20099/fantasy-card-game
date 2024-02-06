@@ -14,4 +14,11 @@ function on_message(self, message_id, message, sender)
 			go.set("#sprite", "tint.w", 1)
 		end
 	end
+	if message_id == hash('take_damage') then
+		if message.damage <= 0 then 
+			message.damage = 0
+			msg.post('/cards/spawn_card#cards', 'card_destroed')
+		end
+		label.set_text('#label', message.damage)
+	end
 end

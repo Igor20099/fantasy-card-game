@@ -89,5 +89,6 @@ function on_message(self, message_id, message, sender)
 		timer.delay(0.95, false, function() spawn_top_row(self) end)
 		timer.delay(0.7, false, function() enable_first_row_collision(self) end)
 	end
+	
 
 end
