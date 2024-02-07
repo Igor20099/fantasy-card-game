@@ -1,6 +1,6 @@
 components {
   id: "vampirism"
-  component: "/scripts/vampirism.script"
+  component: "/scripts/support_cards/vampirism.script"
   position {
     x: 0.0
     y: 0.0

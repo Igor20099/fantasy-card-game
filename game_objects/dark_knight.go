@@ -1,6 +1,6 @@
 components {
   id: "dark_knight"
-  component: "/scripts/dark_knight.script"
+  component: "/scripts/enemy_cards/dark_knight.script"
   position {
     x: 0.0
     y: 0.0
@@ -24,6 +24,7 @@ embedded_components {
   "group: \"enemy\"\n"
   "mask: \"player\"\n"
   "mask: \"support\"\n"
+  "mask: \"replace\"\n"
   "embedded_collision_shape {\n"
   "  shapes {\n"
   "    shape_type: TYPE_BOX\n"

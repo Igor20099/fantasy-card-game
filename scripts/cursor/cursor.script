@@ -26,11 +26,11 @@ function on_message(self, message_id, message, sender)
 
 	-- When a collision message is received -- set self.collision_id to the id of 
 	-- the top-most game object which is pointed to (aka, colliding with) the cursor object
-	if message_id == hash("collision_response") and message.other_id == hash('/player') or message_id == hash("collision_response") and message.other_id == hash('/vampirism')  then
+	if message_id == hash("collision_response") and message.other_id == hash('/player') or message_id == hash("collision_response") and message.other_id == hash('/replace')  then
 		print(message.other_id)
 		if message.other_id == hash('/player') and  message.other_id ~= hash('/fireball') then
 			self.start_pos = vmath.vector3(PLAYER_POS)
-		elseif message.other_id ~= hash('/player') and  message.other_id == hash('/vampirism') then
+		elseif message.other_id ~= hash('/player') and  message.other_id == hash('/replace') then
 			self.start_pos = vmath.vector3(CARD_SUPPORT_1_POS)
 		end
 		
@@ -78,6 +78,8 @@ function on_input(self, action_id, action)
 				msg.post('fireball#fireball', 'fireball_droped')
 			elseif self.collision_id == hash('/vampirism') then
 				msg.post('vampirism#vampirism', 'vampirism_droped')
+			elseif self.collision_id == hash('/replace') then
+				msg.post('replace#replace', 'replace_droped')
 			end
 			
 		end

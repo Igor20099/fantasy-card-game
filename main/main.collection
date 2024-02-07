@@ -1,7 +1,7 @@
 name: "main"
 instances {
-  id: "vampirism"
-  prototype: "/game_objects/vampirism.go"
+  id: "replace"
+  prototype: "/game_objects/replace.go"
   position {
     x: 180.0
     y: 100.0
@@ -84,7 +84,7 @@ embedded_instances {
   id: "cursor"
   data: "components {\n"
   "  id: \"cursor\"\n"
-  "  component: \"/scripts/cursor.script\"\n"
+  "  component: \"/scripts/cursor/cursor.script\"\n"
   "  position {\n"
   "    x: 0.0\n"
   "    y: 0.0\n"

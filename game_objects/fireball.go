@@ -1,6 +1,6 @@
 components {
   id: "fireball"
-  component: "/scripts/fireball.script"
+  component: "/scripts/support_cards/fireball.script"
   position {
     x: 0.0
     y: 0.0

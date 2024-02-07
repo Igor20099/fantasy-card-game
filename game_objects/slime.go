@@ -1,6 +1,6 @@
 components {
   id: "enemy"
-  component: "/scripts/slime.script"
+  component: "/scripts/enemy_cards/slime.script"
   position {
     x: 0.0
     y: 0.0

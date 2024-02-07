@@ -23,6 +23,7 @@ embedded_components {
   "restitution: 0.5\n"
   "group: \"potion\"\n"
   "mask: \"player\"\n"
+  "mask: \"replace\"\n"
   "embedded_collision_shape {\n"
   "  shapes {\n"
   "    shape_type: TYPE_BOX\n"

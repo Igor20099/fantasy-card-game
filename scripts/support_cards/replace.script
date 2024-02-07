@@ -1,0 +1,23 @@
+
+function init(self)
+	go.set('#label_type', 'color', vmath.vector4(0,0,0,0))
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash('trigger_response') and message.other_id ~= hash('/cursor')  then
+		if message.enter then
+			self.enemy = message.other_id
+			local url = msg.url('main',self.enemy,'label')
+			local url_type = msg.url('main',self.enemy,'label_type')
+			self.enemy_damage = tonumber(label.get_text(url))
+			self.card_type = label.get_text(url_type)
+		else 
+			self.enemy = nil
+		end
+	end
+	if message_id == hash('replace_droped') and self.enemy ~= nil then
+		msg.post('#collisionobject1', 'disable')
+		msg.post('/cards/spawn_card#cards', 'replace_cards')
+		go.delete(go.get_id())
+	end
+end
