@@ -1,6 +1,6 @@
 components {
-  id: "fireball"
-  component: "/scripts/support_cards/fireball.script"
+  id: "chain_lighting"
+  component: "/scripts/support_cards/chain_lighting.script"
   position {
     x: 0.0
     y: 0.0
@@ -193,7 +193,9 @@ embedded_components {
   "pivot: PIVOT_CENTER\n"
   "blend_mode: BLEND_MODE_ALPHA\n"
   "line_break: false\n"
-  "text: \"FIREBALL\\n"
+  "text: \"chain lightning\\n"
+  "\"\n"
+  "  \"\\n"
   "\"\n"
   "  \"\"\n"
   "font: \"/fonts/pixel.font\"\n"
@@ -211,32 +213,9 @@ embedded_components {
     w: 1.0
   }
   scale {
-    x: 0.8
-    y: 0.8
+    x: 0.7
+    y: 0.7
     z: 1.0
-  }
-}
-embedded_components {
-  id: "sprite"
-  type: "sprite"
-  data: "default_animation: \"fireball\"\n"
-  "material: \"/builtins/materials/sprite.material\"\n"
-  "blend_mode: BLEND_MODE_ALPHA\n"
-  "textures {\n"
-  "  sampler: \"texture_sampler\"\n"
-  "  texture: \"/atlases/card_atlas.atlas\"\n"
-  "}\n"
-  ""
-  position {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
   }
 }
 embedded_components {
@@ -276,6 +255,29 @@ embedded_components {
   "  \"\"\n"
   "font: \"/builtins/fonts/system_font.font\"\n"
   "material: \"/builtins/fonts/label.material\"\n"
+  ""
+  position {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+}
+embedded_components {
+  id: "sprite"
+  type: "sprite"
+  data: "default_animation: \"chain lighting\"\n"
+  "material: \"/builtins/materials/sprite.material\"\n"
+  "blend_mode: BLEND_MODE_ALPHA\n"
+  "textures {\n"
+  "  sampler: \"texture_sampler\"\n"
+  "  texture: \"/atlases/card_atlas.atlas\"\n"
+  "}\n"
   ""
   position {
     x: 0.0

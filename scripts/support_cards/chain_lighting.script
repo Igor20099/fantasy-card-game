@@ -1,0 +1,35 @@
+math.randomseed(os.time())
+function init(self)
+	self.damage = math.random(4,12)
+	label.set_text('#label', self.damage)
+	print(self.name)
+	go.set('#label_type', 'color', vmath.vector4(0,0,0,0))
+	self.enemy = nil
+	self.enemy_damage = 0
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash('trigger_response') and message.other_id ~= hash('/cursor')  then
+		if message.enter then
+			self.enemy = message.other_id
+			local url = msg.url('main',self.enemy,'label')
+			local url_type = msg.url('main',self.enemy,'label_type')
+			self.enemy_damage = tonumber(label.get_text(url))
+			self.card_type = label.get_text(url_type)
+		else 
+			self.enemy = nil
+		end
+	end
+	if message_id == hash('chain_droped') and self.enemy ~= nil then
+		msg.post('#collisionobject1', 'disable')
+		print(self.enemy)
+		local pos = go.get_position()
+		self.enemy_damage = self.enemy_damage - self.damage
+		print(self.enemy_damage)
+		msg.post(self.enemy, 'take_damage', {damage = self.enemy_damage})
+		local second_damage = math.random(1,math.floor(self.damage / 2))
+		local three_damage =  math.random(1,math.floor(self.damage / 2))
+		msg.post('/cards/spawn_card#cards', 'chain_damage', {second_damage = second_damage ,three_damage = three_damage})
+		go.delete(go.get_id())
+	end
+end

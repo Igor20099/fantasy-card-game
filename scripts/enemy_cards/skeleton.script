@@ -21,4 +21,11 @@ function on_message(self, message_id, message, sender)
 		end
 		label.set_text('#label', message.damage)
 	end
+	if message_id == hash('take_chain_damage') then
+		self.damage = self.damage - message.damage
+		if self.damage <=0 then 
+			self.damage = 0
+		end
+		label.set_text('#label', self.damage )
+	end
 end
