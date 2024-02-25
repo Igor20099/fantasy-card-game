@@ -7,6 +7,8 @@ function init(self)
 	self.card_type = nil
 	self.lv = 1
 	label.set_text('#label_lv', 'LV '..self.lv)
+	self.support_card_1 = nil
+	self.support_card_2 = nil
 end
 
 

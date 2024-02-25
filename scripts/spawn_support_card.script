@@ -1,0 +1,20 @@
+local CHAIN_FACTORY = '#chain_factory'
+local FIREBALL_FACTORY = '#fireball_factory'
+local REPLACE_FACTORY = '#replace_factory'
+local VAMPIRISM_FACTORY = '#vampirism_factory'
+local POS_SUPPORT_1 = {180,100}
+local POS_SUPPORT_2 = {404,100}
+
+math.randomseed(os.time())
+function init(self)
+	self.support_cards_factorys = {CHAIN_FACTORY,FIREBALL_FACTORY,REPLACE_FACTORY,VAMPIRISM_FACTORY}
+end
+
+
+
+function on_message(self, message_id, message, sender)
+	-- Add message-handling code here
+	-- Learn more: https://defold.com/manuals/message-passing/
+	-- Remove this function if not needed
+end
+
