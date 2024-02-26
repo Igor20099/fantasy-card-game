@@ -2,19 +2,26 @@ local CHAIN_FACTORY = '#chain_factory'
 local FIREBALL_FACTORY = '#fireball_factory'
 local REPLACE_FACTORY = '#replace_factory'
 local VAMPIRISM_FACTORY = '#vampirism_factory'
-local POS_SUPPORT_1 = {180,100}
-local POS_SUPPORT_2 = {404,100}
+local POS_SUPPORT_1 = vmath.vector3(180,100,0)
+local POS_SUPPORT_2 = vmath.vector3(404,100,0)
 
 math.randomseed(os.time())
 function init(self)
 	self.support_cards_factorys = {CHAIN_FACTORY,FIREBALL_FACTORY,REPLACE_FACTORY,VAMPIRISM_FACTORY}
+	self.support_card_1 = nil
+	self.support_card_2 = nil
 end
 
 
 
 function on_message(self, message_id, message, sender)
-	-- Add message-handling code here
-	-- Learn more: https://defold.com/manuals/message-passing/
-	-- Remove this function if not needed
+	if message_id == hash('add_card') then
+		if self.support_card_1 == nil then
+			self.support_card_1 = factory.create(self.support_cards_factorys[math.random(1,#self.support_cards_factorys)],vmath.vector3(POS_SUPPORT_1))
+			print(self.support_card_1)
+		elseif self.support_card_1 ~= nil and self.support_card_2 == nil then
+			self.support_card_2 = factory.create(self.support_cards_factorys[math.random(1,#self.support_cards_factorys)],vmath.vector3(POS_SUPPORT_2))
+		end
+	end
 end
 

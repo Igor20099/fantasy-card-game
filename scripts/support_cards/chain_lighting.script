@@ -1,11 +1,17 @@
 math.randomseed(os.time())
+
+local CARD_TYPE = 'chain_lighting'
 function init(self)
+	print(go.get_id())
 	self.damage = math.random(4,10)
 	label.set_text('#label', self.damage)
 	print(self.name)
 	go.set('#label_type', 'color', vmath.vector4(0,0,0,0))
 	self.enemy = nil
 	self.enemy_damage = 0
+	print('id-'..go.get_id())
+	local url = msg.url('main',go.get_id(),CARD_TYPE)
+	msg.post('/cursor#cursor','init_support_card',{type = CARD_TYPE, url = url, pos = go.get_position()})
 end
 
 function on_message(self, message_id, message, sender)

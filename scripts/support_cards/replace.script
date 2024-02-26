@@ -1,6 +1,9 @@
-
+local CARD_TYPE = 'replace'
 function init(self)
 	go.set('#label_type', 'color', vmath.vector4(0,0,0,0))
+	print('id-'..go.get_id())
+	local url = msg.url('main',go.get_id(),CARD_TYPE)
+	msg.post('/cursor#cursor','init_support_card',{type = CARD_TYPE, url = url, pos = go.get_position()})
 end
 
 function on_message(self, message_id, message, sender)
