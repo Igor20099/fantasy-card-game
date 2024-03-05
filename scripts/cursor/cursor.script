@@ -19,6 +19,7 @@ function init(self)
 	self.card_type = nil
 	self.card_id = nil
 	self.card_pos = nil
+	self.is_drag = true
 end
 
 function update(self, dt)
@@ -29,18 +30,25 @@ function on_message(self, message_id, message, sender)
 
 	-- When a collision message is received -- set self.collision_id to the id of 
 	-- the top-most game object which is pointed to (aka, colliding with) the cursor object
-	if message_id == hash("collision_response")  then
+	if message_id == hash("collision_response") and self.is_drag then
 		print(message.other_id)
 		if message.other_id == hash('/player')  then
 			self.start_pos = vmath.vector3(PLAYER_POS)
-		elseif  message.other_id ~= hash('/player') then
-			self.start_pos = vmath.vector3(CARD_SUPPORT_1_POS)
+		-- elseif  message.other_id ~= hash('/player') then
+		-- 	self.start_pos = vmath.vector3(CARD_SUPPORT_1_POS)
 		end
 		
 		if not self.collision_id or
 		go.get_position(self.collision_id).z < message.other_position.z then
 			self.collision_id = message.other_id
 		end
+	elseif message_id == hash("collision_response") and self.is_drag == false then
+		msg.post("#collisionobject", "enable")
+			print(message.other_id)
+			local s2 = vmath.vector3(1.2, 1.2, 1.0)
+			go.set_scale(s2, message.other_id)
+
+		
 	end
 	if message_id == hash('init_support_card') then
 		print('тип'..message.type)
@@ -48,12 +56,15 @@ function on_message(self, message_id, message, sender)
 		self.card_id = message.url
 		self.card_pos = message.pos
 	end
+	if message_id == hash('disable_drag') then
+self.is_drag = message.drag
+	end
 end
 
 function on_input(self, action_id, action)
 
 	-- Only process inputs which reflect a 'touch action' as defined within game.input_bindings
-	if not action_id or action_id == hash("touch") then
+	if not action_id or action_id == hash("touch")  then
 
 		-- Update the Defold cursor Game Object position to be the same as the current 
 		-- position of the machine cursor
@@ -61,7 +72,7 @@ function on_input(self, action_id, action)
 		go.set_position(action_pos)
 
 		-- Revise script control variables; click/touch -- as pressed or released 
-		if action.pressed then
+		if action.pressed and self.is_drag then
 			-- When the action reflects a press
 			msg.post("#collisionobject", "enable")
 			self.pressed = true
@@ -70,7 +81,7 @@ function on_input(self, action_id, action)
 	
 			
 
-		elseif action.released then
+		elseif action.released and self.is_drag then
 			-- When the action reflects a release
 			msg.post("#collisionobject", "disable")
 			self.pressed = false
@@ -82,8 +93,8 @@ function on_input(self, action_id, action)
 			go.set_scale(s1, self.collision_id)
 			if self.collision_id == hash('/player') then
 				go.set_position(self.start_pos, self.collision_id)
-			else
-				go.set_position(self.card_pos, self.collision_id)
+			-- else
+			-- 	go.set_position(self.card_pos, self.collision_id)
 			end
 			
 			if self.collision_id == hash('/player') then

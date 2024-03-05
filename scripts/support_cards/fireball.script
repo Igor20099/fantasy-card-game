@@ -11,7 +11,7 @@ function init(self)
 	self.enemy_damage = 0
 	print('id-'..go.get_id())
 	local url = msg.url('main',go.get_id(),CARD_TYPE)
-	msg.post('/cursor#cursor','init_support_card',{type = CARD_TYPE, url = url, pos = go.get_position()})
+	-- msg.post('/cursor#cursor','init_support_card',{type = CARD_TYPE, url = url, pos = go.get_position()})
 end
 
 function on_message(self, message_id, message, sender)
