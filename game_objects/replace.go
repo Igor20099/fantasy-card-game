@@ -202,7 +202,7 @@ embedded_components {
   "text: \"support\\n"
   "\"\n"
   "  \"\"\n"
-  "font: \"/builtins/fonts/system_font.font\"\n"
+  "font: \"/builtins/fonts/default.font\"\n"
   "material: \"/builtins/fonts/label.material\"\n"
   ""
   position {

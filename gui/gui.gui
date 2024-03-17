@@ -1,7 +1,7 @@
 script: "/scripts/gui/gui.gui_script"
 fonts {
   name: "system_font"
-  font: "/builtins/fonts/system_font.font"
+  font: "/builtins/fonts/default.font"
 }
 fonts {
   name: "pixel"
