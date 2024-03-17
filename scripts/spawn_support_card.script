@@ -11,6 +11,8 @@ function init(self)
 	self.support_card_1 = nil
 	self.support_card_2 = nil
 	msg.post('/cards/background_shading#sprite', 'disable')
+	msg.post('/cards/background_shading#label', 'disable')
+	msg.post('/cards/background_shading#label1', 'disable')
 end
 
 
@@ -23,6 +25,8 @@ function on_message(self, message_id, message, sender)
 			factory.create(self.support_cards_factorys[math.random(1,#self.support_cards_factorys)],vmath.vector3(pos_x,400,1))
 			pos_x = pos_x + 112
 			msg.post('/cards/background_shading#sprite', 'enable')
+			msg.post('/cards/background_shading#label', 'enable')
+			msg.post('/cards/background_shading#label1', 'enable')
 		end
 		-- if self.support_card_1 == nil then
 		-- 	self.support_card_1 = factory.create(self.support_cards_factorys[math.random(1,#self.support_cards_factorys)],vmath.vector3(POS_SUPPORT_1))
