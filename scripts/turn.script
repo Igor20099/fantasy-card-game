@@ -1,0 +1,13 @@
+function init(self)
+	self.turn_count = 0
+end
+function on_message(self, message_id, message, sender)
+	if message_id == hash('turned') then
+		self.turn_count = self.turn_count + 1
+		label.set_text('#label','Кол. ходов: '..self.turn_count)
+	end
+	if message_id == hash('end_game') then
+		msg.post('/gui#gui', 'show_turn_count',{count = self.turn_count})
+	end
+end
+

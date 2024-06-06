@@ -194,13 +194,15 @@ embedded_components {
   "pivot: PIVOT_CENTER\n"
   "blend_mode: BLEND_MODE_ALPHA\n"
   "line_break: true\n"
-  "text: \"DARK KNIGHT\"\n"
+  "text: \"\\320\\242\\320\\265\\320\\274\\320\\275\\321\\213\\320\\271 \\321\\200\\321\\213\\321\\206\\320\\260\\321\\200\\321\\214\\n"
+  "\"\n"
+  "  \"\"\n"
   "font: \"/fonts/pixel.font\"\n"
   "material: \"/builtins/fonts/label.material\"\n"
   ""
   position {
     x: 0.0
-    y: -64.0
+    y: -63.0
     z: 0.0
   }
   rotation {

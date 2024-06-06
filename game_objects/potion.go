@@ -167,8 +167,12 @@ embedded_components {
   "tracking: 0.0\n"
   "pivot: PIVOT_CENTER\n"
   "blend_mode: BLEND_MODE_ALPHA\n"
-  "line_break: false\n"
-  "text: \"POTION\\n"
+  "line_break: true\n"
+  "text: \"\\320\\233\\320\\265\\321\\207\\320\\265\\320\\261\\320\\275\\320\\276\\320\\265 \\320\\267\\320\\265\\320\\273\\321\\214\\320\\265\\n"
+  "\"\n"
+  "  \"\\n"
+  "\"\n"
+  "  \"\\n"
   "\"\n"
   "  \"\"\n"
   "font: \"/fonts/pixel.font\"\n"
@@ -186,8 +190,8 @@ embedded_components {
     w: 1.0
   }
   scale {
-    x: 0.8
-    y: 0.8
+    x: 0.6
+    y: 0.6
     z: 1.0
   }
 }
