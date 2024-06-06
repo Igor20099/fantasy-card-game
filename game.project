@@ -13,7 +13,7 @@ high_dpi = 0
 input_method = HiddenInputField
 
 [project]
-title = CardGame
+title = Card Run
 dependencies#0 = https://github.com/Insality/druid/archive/master.zip
 
 [graphics]
