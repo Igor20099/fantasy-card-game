@@ -1,28 +1,36 @@
 [bootstrap]
 main_collection = /main/scene_manager.collectionc
+render = /builtins/render/default.renderc
 
 [script]
 shared_state = 1
 
 [display]
 width = 600
-height = 800
-high_dpi = 0
+height = 768
+high_dpi = 1
+fullscreen = 0
+display_profiles = /builtins/render/default.display_profilesc
+dynamic_orientation = 0
 
 [android]
 input_method = HiddenInputField
 
 [project]
 title = Card Run
+version = 1.0.0
 dependencies#0 = https://github.com/Insality/druid/archive/master.zip
-
-[graphics]
-default_texture_min_filter = nearest
-default_texture_mag_filter = nearest
+dependencies#1 = https://github.com/indiesoftby/defold-yagames/archive/master.zip
+dependencies#2 = https://github.com/indiesoftby/defold-yagames/archive/master.zip
+dependencies#3 = https://github.com/subsoap/defsave/archive/master.zip
 
 [html5]
-scale_mode = downscale_fit
 show_fullscreen_button = 0
 show_made_with_defold = 0
 show_console_banner = 0
+scale_mode = stretch
+htmlfile = /builtins/manifests/web/engine_template.html
+
+[sprite]
+subpixels = 0
 

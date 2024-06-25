@@ -1,4 +1,5 @@
 function init(self)
+	
 	self.enemy = nil
 	self.max_health = 20
 	self.health = self.max_health
@@ -19,6 +20,7 @@ function on_message(self, message_id, message, sender)
 			local url_type = msg.url('main',self.enemy,'label_type')
 			self.enemy_damage = tonumber(label.get_text(url))
 			self.card_type = label.get_text(url_type)
+			
 		else 
 			self.enemy = nil
 		end
@@ -29,7 +31,7 @@ function on_message(self, message_id, message, sender)
 		local pos = go.get_position()
 		
 		msg.post('/cards/spawn_card#cards', 'card_destroed')
-		msg.post('/turn_count#turn', 'turned')
+		msg.post('/gui#gui', 'turned')
 		go.delete(self.enemy)
 		
 			if self.card_type == 'slime' then
@@ -51,7 +53,7 @@ function on_message(self, message_id, message, sender)
 			
 			if self.health <= 0 then
 				msg.post('/gui#gui', 'show_restart_btn')
-				msg.post('/turn_count#turn', 'end_game')
+				msg.post('/gui#gui', 'end_game')
 				go.delete()
 			end
 			label.set_text('#label', self.health..'/'..self.max_health)

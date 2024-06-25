@@ -85,6 +85,11 @@ embedded_components {
     z: 0.0
     w: 1.0
   }
+  scale {
+    x: 1.4
+    y: 1.4
+    z: 1.0
+  }
 }
 embedded_components {
   id: "label"
@@ -126,7 +131,7 @@ embedded_components {
   ""
   position {
     x: 0.0
-    y: 46.0
+    y: 86.0
     z: 0.0
   }
   rotation {
@@ -134,6 +139,11 @@ embedded_components {
     y: 0.0
     z: 0.0
     w: 1.0
+  }
+  scale {
+    x: 1.2
+    y: 1.2
+    z: 1.0
   }
 }
 embedded_components {
@@ -168,9 +178,7 @@ embedded_components {
   "pivot: PIVOT_CENTER\n"
   "blend_mode: BLEND_MODE_ALPHA\n"
   "line_break: true\n"
-  "text: \"\\320\\233\\320\\265\\321\\207\\320\\265\\320\\261\\320\\275\\320\\276\\320\\265 \\320\\267\\320\\265\\320\\273\\321\\214\\320\\265\\n"
-  "\"\n"
-  "  \"\\n"
+  "text: \"\\320\\227\\320\\265\\320\\273\\321\\214\\320\\265 \\320\\267\\320\\264\\320\\276\\321\\200\\320\\276\\320\\262\\321\\214\\321\\217\\n"
   "\"\n"
   "  \"\\n"
   "\"\n"
@@ -180,7 +188,7 @@ embedded_components {
   ""
   position {
     x: 0.0
-    y: -64.0
+    y: -90.0
     z: 0.0
   }
   rotation {
@@ -190,8 +198,8 @@ embedded_components {
     w: 1.0
   }
   scale {
-    x: 0.6
-    y: 0.6
+    x: 1.2
+    y: 1.2
     z: 1.0
   }
 }

@@ -1,0 +1,44 @@
+local yagames = require("yagames.yagames")
+
+local function init_handler(self, err)
+	if err then
+		print("Something went wrong:", err)
+	end
+	msg.post('/yagames#ya', "show_fullscreen_adv")
+end
+
+
+function init(self)
+	msg.post("@render:", "use_fixed_fit_projection", {zoom = 4})
+	-- msg.post(" @render :", "resize", {width = 1280, 720})
+	yagames.init(init_handler)	
+end
+
+
+local function adv_open(self)
+	msg.post('/music#music', 'sound_off')
+	print('init')
+end
+
+local function adv_close(self, was_shown)
+	-- You can switch sounds back!
+end
+
+local function adv_offline(self)
+	-- Internet is offline
+end
+
+local function adv_error(self, err)
+	-- Something wrong happened :(
+end
+
+function on_message(self, message_id, message)
+	if message_id == hash("show_fullscreen_adv") then
+		yagames.adv_show_fullscreen_adv({
+			open = adv_open,
+			close = adv_close,
+			offline = adv_offline,
+			error = adv_error
+		})
+	end
+end

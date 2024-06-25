@@ -1,5 +1,5 @@
 local CARD_SUPPORT_1_POS = vmath.vector3(180,100,0)
-local PLAYER_POS = vmath.vector3(292,100,0)
+local PLAYER_POS = vmath.vector3(303,170,0)
 local CARD_SUPPORT_2_POS = vmath.vector3(404,100,0)
 
 
@@ -44,14 +44,12 @@ function on_message(self, message_id, message, sender)
 		end
 	elseif message_id == hash("collision_response") and self.is_drag == false then
 		msg.post("#collisionobject", "enable")
-			print(message.other_id)
 			local s2 = vmath.vector3(1.2, 1.2, 1.0)
 			go.set_scale(s2, message.other_id)
 
 		
 	end
 	if message_id == hash('init_support_card') then
-		print('тип'..message.type)
 		self.card_type = message.type
 		self.card_id = message.url
 		self.card_pos = message.pos

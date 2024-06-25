@@ -1,10 +1,21 @@
 local druid = require("druid.druid")
+local defsave = require("defsave.defsave")
+
 
 local function on_button_callback(self)
 	msg.post('scene_manager:/main_scene#scene_manager', 'restart_game')
 end
 
+
+-- local function init_handler(self, err)
+-- 	if err then
+-- 		print("Something went wrong:", err)
+-- 	end
+-- end
+
 function init(self)
+	defsave.appname = "card_adventure"
+	defsave.load("turns")
 	self.druid = druid.new(self)
 	self.button = self.druid:new_button("restart_btn", on_button_callback)
 	self.scale_x = 0.01
@@ -12,6 +23,9 @@ function init(self)
 	gui.set_enabled(gui.get_node('bg'), false)
 	gui.set_enabled(gui.get_node('text1'), false)
 	gui.set_enabled(gui.get_node('turn_count_ui'), false)
+	gui.set_enabled(gui.get_node('text2'), false)
+	gui.set_enabled(gui.get_node('record'), false)
+	self.turn_count = 0
 	
 end
 
@@ -35,12 +49,44 @@ function on_message(self, message_id, message, sender)
 	end
 	if message_id == hash('show_turn_count') then
 		gui.set_text(gui.get_node('turn_count_ui'), message.count)
+		gui.set_text(gui.get_node('record'), message.best_record)
 	end
 	if message_id == hash('show_restart_btn') then 
 		gui.set_enabled(gui.get_node('bg'), true)
 		gui.set_enabled(gui.get_node('text1'), true)
 		gui.set_enabled(gui.get_node('turn_count_ui'), true)
+		gui.set_enabled(gui.get_node('text2'), true)
+		gui.set_enabled(gui.get_node('record'), true)
 	end
+
+	if message_id == hash('turned') then
+		self.turn_count = self.turn_count + 1
+		print('turned')
+		gui.set_text(gui.get_node('turn'), 'Кол. ходов: '..self.turn_count)
+	end
+	if message_id == hash('end_game') then
+		
+		local best_record = defsave.get('turns', 'record') or 0
+		print(best_record)
+		if self.turn_count > best_record then
+			best_record = self.turn_count
+			defsave.set('turns','record',self.turn_count)
+			defsave.save("turns")
+		end
+		
+		
+		-- msg.post('/yagames#ya', 'end_game',{turns = self.turn_count})
+	
+
+		msg.post('/gui#gui', 'show_turn_count',{count = self.turn_count,best_record=best_record})
+		
+	end
+
+	-- if message_id == hash('record') then 
+	-- 	gui.set_text(gui.get_node('record'), message.record)
+	-- 	print('rrreeecc')
+	-- 	print(message.record)
+	-- end
 
 end
 

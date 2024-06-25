@@ -86,6 +86,11 @@ embedded_components {
     z: 0.0
     w: 1.0
   }
+  scale {
+    x: 1.4
+    y: 1.4
+    z: 1.0
+  }
 }
 embedded_components {
   id: "label"
@@ -127,7 +132,7 @@ embedded_components {
   ""
   position {
     x: 0.0
-    y: 46.0
+    y: 86.0
     z: 0.0
   }
   rotation {
@@ -135,6 +140,11 @@ embedded_components {
     y: 0.0
     z: 0.0
     w: 1.0
+  }
+  scale {
+    x: 1.2
+    y: 1.2
+    z: 1.0
   }
 }
 embedded_components {
@@ -177,7 +187,7 @@ embedded_components {
   ""
   position {
     x: 0.0
-    y: -64.0
+    y: -78.0
     z: 0.0
   }
   rotation {
@@ -187,8 +197,8 @@ embedded_components {
     w: 1.0
   }
   scale {
-    x: 0.8
-    y: 0.8
+    x: 1.2
+    y: 1.2
     z: 1.0
   }
 }
