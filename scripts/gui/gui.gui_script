@@ -1,5 +1,6 @@
 local druid = require("druid.druid")
 local defsave = require("defsave.defsave")
+local ya_scores = require("scripts.yandex.ya_leaderboards")
 
 
 local function on_button_callback(self)
@@ -50,6 +51,7 @@ function on_message(self, message_id, message, sender)
 	if message_id == hash('show_turn_count') then
 		gui.set_text(gui.get_node('turn_count_ui'), message.count)
 		gui.set_text(gui.get_node('record'), message.best_record)
+		ya_scores.set_score_handler(self,message.best_record)
 	end
 	if message_id == hash('show_restart_btn') then 
 		gui.set_enabled(gui.get_node('bg'), true)
@@ -67,11 +69,13 @@ function on_message(self, message_id, message, sender)
 	if message_id == hash('end_game') then
 		
 		local best_record = defsave.get('turns', 'record') or 0
+	
 		print(best_record)
 		if self.turn_count > best_record then
 			best_record = self.turn_count
 			defsave.set('turns','record',self.turn_count)
 			defsave.save("turns")
+			ya_scores.set_score_handler(self,best_record)
 		end
 		
 		

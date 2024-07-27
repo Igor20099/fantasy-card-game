@@ -1,10 +1,14 @@
 local yagames = require("yagames.yagames")
 
+local ya_scores = require("scripts.yandex.ya_leaderboards")
+
 local function init_handler(self, err)
 	if err then
 		print("Something went wrong:", err)
 	end
+	yagames.features_loadingapi_ready()
 	msg.post('/yagames#ya', "show_fullscreen_adv")
+	ya_scores.init_handler()
 end
 
 
@@ -12,6 +16,7 @@ function init(self)
 	msg.post("@render:", "use_fixed_fit_projection", {zoom = 4})
 	-- msg.post(" @render :", "resize", {width = 1280, 720})
 	yagames.init(init_handler)	
+
 end
 
 
