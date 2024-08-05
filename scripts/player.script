@@ -8,6 +8,8 @@ function init(self)
 	self.card_type = nil
 	self.lv = 1
 	label.set_text('#label_lv', 'Ур. '..self.lv)
+	print('player')
+	msg.post('scene_manager:/ya#ya', 'actual_init')
 
 end
 

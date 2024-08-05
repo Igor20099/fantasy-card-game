@@ -5,19 +5,22 @@ local ya_scores = require("scripts.yandex.ya_leaderboards")
 local function init_handler(self, err)
 	if err then
 		print("Something went wrong:", err)
+	else
+		ya_scores.init_handler()
+		timer.delay(2, false, function() 	yagames.features_loadingapi_ready() end)
+		msg.post('#', "show_fullscreen_adv")
+		
 	end
-	yagames.features_loadingapi_ready()
-	msg.post('/yagames#ya', "show_fullscreen_adv")
-	ya_scores.init_handler()
+	
 end
 
 
 function init(self)
-	msg.post("@render:", "use_fixed_fit_projection", {zoom = 4})
-	-- msg.post(" @render :", "resize", {width = 1280, 720})
-	yagames.init(init_handler)	
+
 
 end
+
+
 
 
 local function adv_open(self)
@@ -38,6 +41,10 @@ local function adv_error(self, err)
 end
 
 function on_message(self, message_id, message)
+	if message_id == hash('actual_init') then
+		print('ya')
+		yagames.init(init_handler)
+	end
 	if message_id == hash("show_fullscreen_adv") then
 		yagames.adv_show_fullscreen_adv({
 			open = adv_open,

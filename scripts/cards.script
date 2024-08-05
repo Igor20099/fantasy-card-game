@@ -66,6 +66,7 @@ end
 
 
 function init(self)
+	print('cards')
 	self.factory_table = {'#factory_slime','#factory_potion','#factory_skeleton','#factory_dark_knight'}
 	self.cards_rows = {}
 	init_cards(self)

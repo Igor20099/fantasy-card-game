@@ -6,6 +6,7 @@ local CARD_SUPPORT_2_POS = vmath.vector3(404,100,0)
 function init(self)
 	--Даем управление курсору
 	msg.post(".", "acquire_input_focus")
+	print('cursor')
 
 
 	-- Инициализируем переменные

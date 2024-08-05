@@ -3,6 +3,7 @@ function init(self)
 	self.damage = math.random(5,7)
 	label.set_text('#label', self.damage)
 	print(self.name)
+	print('skeleton')
 	go.set('#label_type', 'color', vmath.vector4(0,0,0,0))
 end
 

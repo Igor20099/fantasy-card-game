@@ -4,6 +4,7 @@ local ya_scores = require("scripts.yandex.ya_leaderboards")
 
 
 local function on_button_callback(self)
+	msg.post('scene_manager:/main_scene#ya', "show_fullscreen_adv")
 	msg.post('scene_manager:/main_scene#scene_manager', 'restart_game')
 end
 
@@ -15,6 +16,7 @@ end
 -- end
 
 function init(self)
+	print('gui')
 	defsave.appname = "card_adventure"
 	defsave.load("turns")
 	self.druid = druid.new(self)

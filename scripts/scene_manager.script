@@ -8,8 +8,11 @@ end
 
 function init(self)
 	msg.post(".", "acquire_input_focus")
+	msg.post("@render:", "use_fixed_fit_projection", {zoom = 4})
+	-- msg.post(" @render :", "resize", {width = 1280, 720})
 	msg.post('#collectionproxy','load')
 	self.current_proxy = nil
+	print('scene')
 end
 
 
